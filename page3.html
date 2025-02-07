@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install the source code</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header, .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .ad-space {
+            text-align: center;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .content {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            display: inline-block;
+            margin: 10px;
+            padding: 15px 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        #downloadButton {
+            display: none;
+            background-color: #008CBA;
+        }
+        #downloadButton:hover {
+            background-color: #007B9A;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Follow the steps to install the source code</h1>
+        <div class="ad-space">হালকা বিজ্ঞাপন</div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <h2>আপনি ফাইনাল পৃষ্ঠায় পৌঁছেছেন!</h2>
+            <p>ফাইল ডাউনলোড করতে, অনুগ্রহ করে প্রথমে আমাদের YouTube চ্যানেল সাবস্ক্রাইব করুন।</p>
+            <a href="https://www.youtube.com/@TheGreekyTanvir" target="_blank" class="button" id="subscribeButton">YouTube চ্যানেল সাবস্ক্রাইব করুন</a>
+            <a href="#" class="button" id="downloadButton" style="display: none;">ফাইল ডাউনলোড করুন</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="ad-space">হালকা বিজ্ঞাপন</div>
+    </div>
+
+    <script>
+        document.getElementById('subscribeButton').addEventListener('click', function() {
+            alert('YouTube চ্যানেল সাবস্ক্রাইব করার জন্য ধন্যবাদ! ৫ সেকেন্ড অপেক্ষা করুন...');
+            setTimeout(function() {
+                document.getElementById('downloadButton').style.display = 'inline-block';
+            }, 5000);
+        });
+
+        document.getElementById('downloadButton').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    let clickCount = localStorage.getItem('downloadClicks');
+    if (!clickCount) {
+        clickCount = 0;
+    } else {
+        clickCount = parseInt(clickCount);
+    }
+    clickCount += 1;
+    localStorage.setItem('downloadClicks', clickCount);
+
+    if (clickCount === 1) {
+        alert('প্রথমবার বিজ্ঞাপন পেজে নিয়ে যাওয়া হচ্ছে...');
+        window.location.replace("https://poawooptugroo.com/4/8887764"); // প্রথম বিজ্ঞাপনের লিংক
+        return;
+    } 
+    
+    if (clickCount === 2) {
+        alert('দ্বিতীয়বার বিজ্ঞাপন পেজে নিয়ে যাওয়া হচ্ছে...');
+        window.location.replace("https://poawooptugroo.com/4/8887764"); // দ্বিতীয় বিজ্ঞাপনের লিংক
+        return;
+    } 
+    
+    if (clickCount === 3) {
+        alert('ফাইল ডাউনলোড শুরু হচ্ছে...');
+        const downloadLink = document.createElement("a");
+        downloadLink.href = "source_code.zip";
+        downloadLink.download = "source_code.zip"; // ফাইলের নাম
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        // ক্লিক কাউন্ট রিসেট করা যাতে আবার কাজ করে
+        localStorage.setItem('downloadClicks', 0);
+    }
+});
+
+    </script>
+</body>
+</html>
