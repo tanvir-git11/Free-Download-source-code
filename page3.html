@@ -76,51 +76,36 @@
     </div>
 
     <script>
+        if (localStorage.getItem('subscribed')) {
+            document.getElementById('downloadButton').style.display = 'inline-block';
+            document.getElementById('subscribeButton').style.display = 'none';
+        }
+
         document.getElementById('subscribeButton').addEventListener('click', function() {
-            alert('YouTube চ্যানেল সাবস্ক্রাইব করার জন্য ধন্যবাদ! ৫ সেকেন্ড অপেক্ষা করুন...');
+            alert('YouTube চ্যানেল সাবস্ক্রাইব করে ৫ সেকেন্ড অপেক্ষা করুন... ');
+            localStorage.setItem('subscribed', 'true');
             setTimeout(function() {
                 document.getElementById('downloadButton').style.display = 'inline-block';
+                document.getElementById('subscribeButton').style.display = 'none';
             }, 5000);
         });
 
         document.getElementById('downloadButton').addEventListener('click', function(e) {
-    e.preventDefault();
-    
-    let clickCount = localStorage.getItem('downloadClicks');
-    if (!clickCount) {
-        clickCount = 0;
-    } else {
-        clickCount = parseInt(clickCount);
-    }
-    clickCount += 1;
-    localStorage.setItem('downloadClicks', clickCount);
+            e.preventDefault();
+            
+            let clickCount = localStorage.getItem('downloadClicks') || 0;
+            clickCount = parseInt(clickCount) + 1;
+            localStorage.setItem('downloadClicks', clickCount);
 
-    if (clickCount === 1) {
-        alert('প্রথমবার বিজ্ঞাপন পেজে নিয়ে যাওয়া হচ্ছে...');
-        window.location.replace("https://poawooptugroo.com/4/8887764"); // প্রথম বিজ্ঞাপনের লিংক
-        return;
-    } 
-    
-    if (clickCount === 2) {
-        alert('দ্বিতীয়বার বিজ্ঞাপন পেজে নিয়ে যাওয়া হচ্ছে...');
-        window.location.replace("https://poawooptugroo.com/4/8887764"); // দ্বিতীয় বিজ্ঞাপনের লিংক
-        return;
-    } 
-    
-    if (clickCount === 3) {
-        alert('ফাইল ডাউনলোড শুরু হচ্ছে...');
-        const downloadLink = document.createElement("a");
-        downloadLink.href = "source_code.zip";
-        downloadLink.download = "source_code.zip"; // ফাইলের নাম
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-        
-        // ক্লিক কাউন্ট রিসেট করা যাতে আবার কাজ করে
-        localStorage.setItem('downloadClicks', 0);
-    }
-});
-
+            if (clickCount <= 2) {
+                alert('বিজ্ঞাপন পেজে নিয়ে যাওয়া হচ্ছে...');
+                window.location.href = "https://poawooptugroo.com/4/8887764"; 
+            } else {
+                alert('ফাইল ডাউনলোড শুরু হচ্ছে...');
+                window.location.href = "https://drive.google.com/file/d/1Xc3zy5mCypo04EcxBlcssQrMgB2mYnBb/view?usp=sharing";
+                localStorage.setItem('downloadClicks', 0);
+            }
+        });
     </script>
 </body>
 </html>
